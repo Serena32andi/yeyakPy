@@ -16,7 +16,7 @@ driver.get("https://yeyak.seoul.go.kr/web/reservation/selectReservView.do?rsv_sv
 
 driver.find_element(by=By.CLASS_NAME, value="pop_x").click()
 
-counter = 1
+counter = 0
 
 while True:
 
