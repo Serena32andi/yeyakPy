@@ -7,7 +7,8 @@ import time
 import ctypes
 import sys
 
-
+saturdays = ["7", "21", "28"]
+sundays = ["1", "15", "22", "29"]
 driver = webdriver.Chrome('./chromedriver')
 
 driver.get("https://yeyak.seoul.go.kr/web/reservation/selectReservView.do?rsv_svc_id=S220414202040183665&code=T500&dCode=T502&sch_order=1&sch_choose_list=&sch_type=&sch_text=%EB%82%9C%EC%A7%80&sch_recpt_begin_dt=&sch_recpt_end_dt=&sch_use_begin_dt=&sch_use_end_dt=&sch_reqst_value=")
@@ -28,8 +29,12 @@ while True:
         if nm == "able":
             winsound.Beep(2500, 1000)
             date = td.find_element(by=By.TAG_NAME, value="span").text
-            ctypes.windll.user32.MessageBoxW(0, "available :" + date, "alert", 1)
-    
+            if date in saturdays:
+                ctypes.windll.user32.MessageBoxW(0, "Saturday :" + date, "alert", 1)
+                driver.close()
+            if date in sundays:
+                ctypes.windll.user32.MessageBoxW(0, "Sunday :" + date, "alert", 1)
+                driver.close()
     if counter==10 :
         print("-")
         counter = 0
